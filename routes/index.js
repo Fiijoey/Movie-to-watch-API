@@ -12,6 +12,10 @@ router.use('/reviews', require('./reviews'));
 
 router.use('/watchlists', require('./watchlists'));
 
+router.get('/', function(req, res, next) {
+    res.send('Welcome to the Movie API');
+});
+
 router.get('/login', passport.authenticate('github'), (req,res)=>{});
 
 
@@ -20,8 +24,6 @@ router.get('/logout', function(req, res, next) {
         if (err) {return next(err);}
         res.redirect('/');
     });
-        
-       
 });
 
 
