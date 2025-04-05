@@ -5,7 +5,6 @@ const bodyParser = require("body-parser");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDocument = require("./swagger.json");
 const dotenv = require("dotenv").config();
-
 const passport = require("passport");
 const session = require("express-session");
 const GitHubStrategy = require("passport-github2").Strategy;
@@ -37,6 +36,8 @@ app.use((req, res, next) => {
 });
 app.use(cors({ methods: ["GET", "POST", "DELETE", "UPDATE", "PUT", "PATCH"] }));
 app.use(cors({ origin: "*" }));
+
+///This is for Error Handling
 
 process.on("uncaughtException", (err, origin) => {
   console.log(
@@ -96,6 +97,7 @@ app.get(
   }
 );
 
+//Initializing the database and starting the server
 mongodb.initDb((err) => {
   if (err) {
     console.log(err);
