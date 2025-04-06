@@ -5,7 +5,7 @@
     "description": "API for managing movies and users",
     "version": "1.0.0"
   },
-  "host": "https://movie-to-watch-api-k551.onrender.com",
+  "host": "movie-to-watch-api-k551.onrender.com",
   "basePath": "/",
   "schemes": [
     "https",
