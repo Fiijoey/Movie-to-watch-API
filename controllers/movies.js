@@ -76,7 +76,7 @@ const updateMovie = async (req, res) => {
             status: req.body.status,
             rating: req.body.rating
         };
-        const response = await mongodb.getDatabase().db().collection('movies').replaceOne({ _id: movieId }, course);
+        const response = await mongodb.getDatabase().db().collection('movies').replaceOne({ _id: movieId }, movie);
 
         if (response.modifiedCount > 0) {
             res.status(200).json({ message: 'Movie updated successfully' });
@@ -97,7 +97,7 @@ const deleteMovie = async (req, res) => {
             return res.status(400).json({ error: 'Invalid Movie ID format' });
         }
 
-        const courseId = new ObjectId(id);
+        const movieId = new ObjectId(id);
         const response = await mongodb.getDatabase().db().collection('movies').deleteOne({ _id: movieId });
 
         if (response.deletedCount > 0) {

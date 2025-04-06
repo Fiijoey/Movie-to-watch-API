@@ -5,7 +5,7 @@ Content-Type: application/json
 
 
 ### Get single movie (replace ID with an invalid one, should return 400 or 404)
-GET http://localhost:3000/movies/67de08382623bd733debd0e3
+GET http://localhost:3000/movies/67ec23822403ed55b2a9833e
 Content-Type: application/json
 
 ### Create a movie (should return 201 Created)
@@ -13,31 +13,31 @@ POST http://localhost:3000/movies
 Content-Type: application/json
 
 {
-  "title": "The Dark Knight",
-    "genre": "Action",
-    "releaseYear": 2008,
-    "duration": 152,
-    "description": "Batman sets out to dismantle the remaining criminal organizations that plague Gotham City. The arrival of the Joker creates an unrelenting wave of chaos.",
+  "title": "Parasite",
+    "genre": "Thriller",
+    "releaseYear": 2019,
+    "duration": 132,
+    "description": "Greed and class discrimination threaten the newly formed symbiotic relationship between the wealthy Park family and the destitute Kim clan.",
     "status": "completed",
-    "rating": 9
+    "rating": 8.6
 }
 
 ### Update a movie (invalid ID, should return 400)
-PUT http://localhost:3000/movies/67e3e411625a8abd74c15d57
+PUT http://localhost:3000/movies/67f1cda4f9369ad1bf486479
 Content-Type: application/json
 
 {
-  "title": "The Dark Knight",
-    "genre": "Action",
-    "releaseYear": 2008,
-    "duration": 152,
-    "description": "Batman sets out to dismantle the remaining criminal organizations that plague Gotham City. The arrival of the Joker creates an unrelenting wave of chaos.",
+  "title": "Parasite",
+    "genre": "Thriller",
+    "releaseYear": 2019,
+    "duration": 132,
+    "description": "Greed and class discrimination threaten the newly formed symbiotic relationship between the wealthy Park family and the destitute Kim clan.",
     "status": "completed",
-    "rating": 9
+    "rating": 9.5
 }
 
 ### Delete a movie (invalid ID, should return 400)
-DELETE http://localhost:3000/movies/67e3e411625a8abd74c15d57
+DELETE http://localhost:3000/movies/67f1cd7ff9369ad1bf486478
 Content-Type: application/json
 
 
@@ -47,7 +47,7 @@ GET http://localhost:3000/users
 
 
 ### GET a single user
-GET http://localhost:3000/users/67de05b92623bd733debd0dc
+GET http://localhost:3000/users/67ec22ae2403ed55b2a98339
 
 
 ### POST - Create a new user
@@ -55,11 +55,13 @@ POST http://localhost:3000/users
 Content-Type: application/json
 
 {
-    "name": "John Doe",
-    "username": "moviebuff99",
-    "password": "$2a$10$abc123",
-    "email": "moviebuff99@example.com",
-    "watchlists": []
+  
+  "username": "chris_jackson",
+  "password": "chrisjackson99",
+  "email": "chris.jackson@example.com",
+  "watchlists": ["Star Wars", "The Force Awakens", "Rogue One"]
+
+
 }
 
 
@@ -74,15 +76,14 @@ Content-Type: application/json
 
 
 ### PUT - Update an existing user
-PUT http://localhost:3000/users/67de05b92623bd733debd0dc
+PUT http://localhost:3000/users/67ec22f72403ed55b2a9833c
 Content-Type: application/json
 
 {
-    "name": "John Doe",
-    "username": "moviebuff99",
-    "password": "$2a$10$abc123",
-    "email": "moviebuff99@example.com",
-    "watchlists": []
+  "username": "dramaKing",
+    "password": "$2a$10$xyz456",
+    "email": "dramaKing@example.com",
+    "watchlists": ["Parasite"]
 }
 
 

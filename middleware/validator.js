@@ -46,8 +46,15 @@ validate.movieRules = () => {
     body('rating')
       .exists()
       .withMessage('Rating is required')
-      .isInt({ min: 1, max: 10 })
-      .withMessage('Rating must be between 1 and 10'),
+      .isFloat({ min: 1, max: 10 })
+      .withMessage('Rating must be a number between 1 and 10')
+      .custom((value) => {
+        // Optional: Ensure no more than two decimal places
+        if (value.toString().split('.').length > 2) {
+          throw new Error('Rating can only have up to two decimal places');
+        }
+        return true;
+      }),
   ];
 };
 

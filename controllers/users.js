@@ -16,7 +16,6 @@ const getSingle = async (req, res) => {
     try {
         const userId = req.params.id;
 
-        // Check for invalid ObjectId format
         if (!ObjectId.isValid(userId)) {
             return res.status(400).json({ error: 'Invalid User ID format' });
         }
@@ -37,17 +36,14 @@ const getSingle = async (req, res) => {
 const createUser = async (req, res) => {
     try {
         const user = {
-            name: req.body.name,
+            username: req.body.username,
+            password: req.body.password,
             email: req.body.email,
-            age: req.body.age,
-            major: req.body.major,
-            graduationYear: req.body.graduationYear,
-            GPA: req.body.GPA,
-            attendanceMode: req.body.attendanceMode,
-            courses: req.body.courses
+            watchlists: req.body.watchlists
         };
 
-        const response = await mongodb.getDatabase().db().collection('Users').insertOne(user);
+        // ✅ Fixed collection name to lowercase
+        const response = await mongodb.getDatabase().db().collection('users').insertOne(user);
 
         if (response.acknowledged) {
             res.status(201).json({ message: 'User created successfully', userId: response.insertedId });
@@ -59,24 +55,19 @@ const createUser = async (req, res) => {
     }
 };
 
-const updateUser= async (req, res) => {
+const updateUser = async (req, res) => {
     try {
         const userId = req.params.id;
 
-        // Check for invalid ObjectId format
         if (!ObjectId.isValid(userId)) {
             return res.status(400).json({ error: 'Invalid User ID format' });
         }
 
         const user = {
-            name: req.body.name,
+            username: req.body.username,
+            password: req.body.password,
             email: req.body.email,
-            age: req.body.age,
-            major: req.body.major,
-            graduationYear: req.body.graduationYear,
-            GPA: req.body.GPA,
-            attendanceMode: req.body.attendanceMode,
-            courses: req.body.courses
+            watchlists: req.body.watchlists
         };
 
         const response = await mongodb.getDatabase().db().collection('users').replaceOne({ _id: new ObjectId(userId) }, user);
@@ -95,9 +86,8 @@ const deleteUser = async (req, res) => {
     try {
         const userId = req.params.id;
 
-        // Check for invalid ObjectId format
         if (!ObjectId.isValid(userId)) {
-            return res.status(400).json({ error: 'Invalid USer ID format' });
+            return res.status(400).json({ error: 'Invalid User ID format' });
         }
 
         const response = await mongodb.getDatabase().db().collection('users').deleteOne({ _id: new ObjectId(userId) });
@@ -119,4 +109,3 @@ module.exports = {
     updateUser,
     deleteUser,
 };
-
