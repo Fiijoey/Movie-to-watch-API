@@ -6,7 +6,7 @@ const doc = {
     description: "Movies to Watch Api",
   },
   host: "localhost:3000",
-  schemes: ["http", "https"],
+  schemes: ["http"],
 };
 
 const outputFile = "./swagger.json";
