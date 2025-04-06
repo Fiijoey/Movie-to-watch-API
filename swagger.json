@@ -8,12 +8,15 @@
   "host": "localhost:3000",
   "basePath": "/",
   "schemes": [
-    "http"
+    "http",
+    "https"
   ],
   "paths": {
     "/movies/": {
       "get": {
-        "tags": ["Movies"],
+        "tags": [
+          "Movies"
+        ],
         "description": "Get all movies",
         "responses": {
           "200": {
@@ -25,7 +28,9 @@
         }
       },
       "post": {
-        "tags": ["Movies"],
+        "tags": [
+          "Movies"
+        ],
         "description": "Create a new movie",
         "parameters": [
           {
@@ -74,7 +79,9 @@
     },
     "/movies/{id}": {
       "get": {
-        "tags": ["Movies"],
+        "tags": [
+          "Movies"
+        ],
         "description": "Get a movie by ID",
         "parameters": [
           {
@@ -97,7 +104,9 @@
         }
       },
       "put": {
-        "tags": ["Movies"],
+        "tags": [
+          "Movies"
+        ],
         "description": "Update a movie by ID",
         "parameters": [
           {
@@ -153,7 +162,9 @@
         }
       },
       "delete": {
-        "tags": ["Movies"],
+        "tags": [
+          "Movies"
+        ],
         "description": "Delete a movie by ID",
         "parameters": [
           {
@@ -181,7 +192,9 @@
     },
     "/users/": {
       "get": {
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "description": "Get all users",
         "responses": {
           "200": {
@@ -193,7 +206,9 @@
         }
       },
       "post": {
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "description": "Create a new user",
         "parameters": [
           {
@@ -233,7 +248,9 @@
     },
     "/users/{id}": {
       "get": {
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "description": "Get a user by ID",
         "parameters": [
           {
@@ -256,7 +273,9 @@
         }
       },
       "put": {
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "description": "Update a user by ID",
         "parameters": [
           {
@@ -303,7 +322,9 @@
         }
       },
       "delete": {
-        "tags": ["Users"],
+        "tags": [
+          "Users"
+        ],
         "description": "Delete a user by ID",
         "parameters": [
           {
