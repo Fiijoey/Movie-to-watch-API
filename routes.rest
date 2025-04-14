@@ -106,3 +106,32 @@ DELETE http://localhost:3000/users/67de05b92623bd733debd0dc3
 # This should return a 400 status with an error indicating the ID is invalid.
 
 
+### POST Create review
+POST http://localhost:3000/reviews
+Content-Type: application/json
+
+{
+  "user_id": "67fd2780e5c52f20916c2cc1",
+  "movie_id": "67f24761070e027ef11d2805",
+  "rating": 4.5,
+  "title": "Incredible Movie!",
+  "comment": "Loved every minute of it."
+}
+
+### GET By ID review
+GET http://localhost:3000/reviews/67fd4e7abe956c5bd76a6d1c
+
+### Updated review
+PUT http://localhost:3000/reviews/67fd4e7abe956c5bd76a6d1c
+Content-Type: application/json
+
+{
+  "user_id": "67fd4e7abe956c5bd76a6d1c",
+  "movie_id": "67f24761070e027ef11d2805",
+  "rating": 4.9,
+  "title": "Incredible Movie!",
+  "comment": "Loved every minute of it."
+}
+
+### DELETE 
+DELETE http://localhost:3000/reviews/67fd4d4acf66d8e3bb5156c4
