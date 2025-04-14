@@ -32,12 +32,6 @@ app.use((req, res, next) => {
 });
 
 app.use(cors());
-// app.use((req, res, next) => {
-//   res.setHeader('Access-Control-Allow-Origin', '*');
-//   next();
-// });
-// app.use(cors({ methods: ['GET', 'POST', 'DELETE', 'UPDATE', 'PUT', 'PATCH'] }));
-// app.use(cors({ origin: '*' }));
 
 process.on("uncaughtException", (err, origin) => {
   console.log(
@@ -57,9 +51,7 @@ passport.use(
       callbackURL: process.env.CALLBACK_URL,
     },
     function (accessToken, refreshToken, profile, done) {
-      //User.findOrCreate({githubId: profile.id}, function (err, user){
       return done(null, profile);
-      //}});
     }
   )
 );
@@ -100,9 +92,7 @@ app.get(
 mongodb.initDb((err) => {
   if (err) {
     console.log(err);
-  } else {
-    app.listen(port, () => {
-      console.log(`Database is listening and node Running on port ${port}`);
-    });
   }
 });
+
+module.exports = app;

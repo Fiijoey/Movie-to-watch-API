@@ -95,6 +95,36 @@ validate.userRules = () => {
       .withMessage('Each item in the watchlist must be a string'),
   ];
 };
+// Review Validation Rules
+validate.reviewRules = () => {
+  return [
+    body('movie_id')
+      .exists()
+      .withMessage('Movie ID is required')
+      .isMongoId()
+      .withMessage('Invalid Movie ID format'),
+
+    body('user_id')
+      .exists()
+      .withMessage('User ID is required')
+      .isMongoId()
+      .withMessage('Invalid User ID format'),
+
+    body('reviewText')
+      .exists({ checkFalsy: true })
+      .withMessage('Review text is required')
+      .isString()
+      .withMessage('Review text must be a string')
+      .isLength({ min: 1 })
+      .withMessage('Review text cannot be empty'),
+
+    body('rating')
+      .exists()
+      .withMessage('Rating is required')
+      .isFloat({ min: 1, max: 10 })
+      .withMessage('Rating must be a number between 1 and 10'),
+  ];
+};
 
 // Shared Validation Result Checker
 validate.checkData = (req, res, next) => {

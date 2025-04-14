@@ -14,23 +14,15 @@
   "paths": {
     "/movies/": {
       "get": {
-        "tags": [
-          "Movies"
-        ],
+        "tags": ["Movies"],
         "description": "Get all movies",
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "200": { "description": "OK" },
+          "500": { "description": "Internal Server Error" }
         }
       },
       "post": {
-        "tags": [
-          "Movies"
-        ],
+        "tags": ["Movies"],
         "description": "Create a new movie",
         "parameters": [
           {
@@ -39,49 +31,29 @@
             "schema": {
               "type": "object",
               "properties": {
-                "title": {
-                  "example": "The Dark Knight"
-                },
-                "genre": {
-                  "example": "Action"
-                },
-                "releaseYear": {
-                  "example": 2008
-                },
-                "duration": {
-                  "example": 152
-                },
+                "title": { "example": "The Dark Knight" },
+                "genre": { "example": "Action" },
+                "releaseYear": { "example": 2008 },
+                "duration": { "example": 152 },
                 "description": {
                   "example": "Batman sets out to dismantle the remaining criminal organizations that plague Gotham City."
                 },
-                "status": {
-                  "example": "completed"
-                },
-                "rating": {
-                  "example": 9
-                }
+                "status": { "example": "completed" },
+                "rating": { "example": 9 }
               }
             }
           }
         ],
         "responses": {
-          "200": {
-            "description": "Movie created successfully"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "200": { "description": "Movie created successfully" },
+          "400": { "description": "Bad Request" },
+          "500": { "description": "Internal Server Error" }
         }
       }
     },
     "/movies/{id}": {
       "get": {
-        "tags": [
-          "Movies"
-        ],
+        "tags": ["Movies"],
         "description": "Get a movie by ID",
         "parameters": [
           {
@@ -92,21 +64,13 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "200": { "description": "OK" },
+          "400": { "description": "Bad Request" },
+          "500": { "description": "Internal Server Error" }
         }
       },
       "put": {
-        "tags": [
-          "Movies"
-        ],
+        "tags": ["Movies"],
         "description": "Update a movie by ID",
         "parameters": [
           {
@@ -121,50 +85,28 @@
             "schema": {
               "type": "object",
               "properties": {
-                "title": {
-                  "example": "The Dark Knight"
-                },
-                "genre": {
-                  "example": "Action"
-                },
-                "releaseYear": {
-                  "example": 2008
-                },
-                "duration": {
-                  "example": 152
-                },
+                "title": { "example": "The Dark Knight" },
+                "genre": { "example": "Action" },
+                "releaseYear": { "example": 2008 },
+                "duration": { "example": 152 },
                 "description": {
                   "example": "Batman sets out to dismantle the remaining criminal organizations that plague Gotham City."
                 },
-                "status": {
-                  "example": "completed"
-                },
-                "rating": {
-                  "example": 9
-                }
+                "status": { "example": "completed" },
+                "rating": { "example": 9 }
               }
             }
           }
         ],
         "responses": {
-          "200": {
-            "description": "Movie updated successfully"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "200": { "description": "Movie updated successfully" },
+          "400": { "description": "Bad Request" },
+          "404": { "description": "Not Found" },
+          "500": { "description": "Internal Server Error" }
         }
       },
       "delete": {
-        "tags": [
-          "Movies"
-        ],
+        "tags": ["Movies"],
         "description": "Delete a movie by ID",
         "parameters": [
           {
@@ -175,40 +117,24 @@
           }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "204": { "description": "No Content" },
+          "400": { "description": "Bad Request" },
+          "404": { "description": "Not Found" },
+          "500": { "description": "Internal Server Error" }
         }
       }
     },
     "/users/": {
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "description": "Get all users",
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "200": { "description": "OK" },
+          "500": { "description": "Internal Server Error" }
         }
       },
       "post": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "description": "Create a new user",
         "parameters": [
           {
@@ -217,40 +143,24 @@
             "schema": {
               "type": "object",
               "properties": {
-                "username": {
-                  "example": "moviebuff99"
-                },
-                "password": {
-                  "example": "$2a$10$abc123"
-                },
-                "email": {
-                  "example": "moviebuff99@example.com"
-                },
-                "watchlists": {
-                  "example": []
-                }
+                "username": { "example": "moviebuff99" },
+                "password": { "example": "$2a$10$abc123" },
+                "email": { "example": "moviebuff99@example.com" },
+                "watchlists": { "example": [] }
               }
             }
           }
         ],
         "responses": {
-          "200": {
-            "description": "User created successfully"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "200": { "description": "User created successfully" },
+          "400": { "description": "Bad Request" },
+          "500": { "description": "Internal Server Error" }
         }
       }
     },
     "/users/{id}": {
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "description": "Get a user by ID",
         "parameters": [
           {
@@ -261,21 +171,13 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "200": { "description": "OK" },
+          "400": { "description": "Bad Request" },
+          "500": { "description": "Internal Server Error" }
         }
       },
       "put": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "description": "Update a user by ID",
         "parameters": [
           {
@@ -290,41 +192,23 @@
             "schema": {
               "type": "object",
               "properties": {
-                "username": {
-                  "example": "moviebuff99"
-                },
-                "password": {
-                  "example": "$2a$10$abc123"
-                },
-                "email": {
-                  "example": "moviebuff99@example.com"
-                },
-                "watchlists": {
-                  "example": []
-                }
+                "username": { "example": "moviebuff99" },
+                "password": { "example": "$2a$10$abc123" },
+                "email": { "example": "moviebuff99@example.com" },
+                "watchlists": { "example": [] }
               }
             }
           }
         ],
         "responses": {
-          "200": {
-            "description": "User updated successfully"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
+          "200": { "description": "OK" },
+          "400": { "description": "Bad Request" },
+          "404": { "description": "Not Found" },
+          "500": { "description": "Internal Server Error" }
         }
       },
       "delete": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "description": "Delete a user by ID",
         "parameters": [
           {
@@ -335,30 +219,126 @@
           }
         ],
         "responses": {
-          "204": {
-            "description": "No Content"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
+          "204": { "description": "No Content" },
+          "400": { "description": "Bad Request" },
+          "404": { "description": "Not Found" },
+          "500": { "description": "Internal Server Error" }
+        }
+      }
+    },
+    "/reviews/": {
+      "get": {
+        "tags": ["Reviews"],
+        "description": "Get all reviews",
+        "responses": {
+          "200": { "description": "OK" },
+          "500": { "description": "Internal Server Error" }
+        }
+      },
+      "post": {
+        "tags": ["Reviews"],
+        "description": "Create a review",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user_id": { "example": "67fd2780e5c52f20916c2cc1" },
+                "movie_id": { "example": "67f24761070e027ef11d2805" },
+                "rating": { "example": "4.5" },
+                "title": { "example": "Incredible Movie!" },
+                "comment": { "example": "Loved every minute of it." }
+              }
+            }
           }
+        ],
+        "responses": {
+          "201": { "description": "Created" },
+          "500": { "description": "Internal Server Error" }
+        }
+      }
+    },
+    "/reviews/{id}": {
+      "get": {
+        "tags": ["Reviews"],
+        "description": "Get a review by ID",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" }
+        ],
+        "responses": {
+          "200": { "description": "OK" },
+          "400": { "description": "Bad Request" },
+          "404": { "description": "Not Found" },
+          "500": { "description": "Internal Server Error" }
+        }
+      },
+      "put": {
+        "tags": ["Reviews"],
+        "description": "Update a review by ID",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user_id": { "example": "67fd2780e5c52f20916c2cc1" },
+                "movie_id": { "example": "67f24761070e027ef11d2805" },
+                "rating": { "example": "4.5" },
+                "title": { "example": "Updated Title" },
+                "comment": { "example": "Updated comment." }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": { "description": "OK" },
+          "400": { "description": "Bad Request" },
+          "404": { "description": "Not Found" },
+          "500": { "description": "Internal Server Error" }
+        }
+      },
+      "delete": {
+        "tags": ["Reviews"],
+        "description": "Delete a review by ID",
+        "parameters": [
+          { "name": "id", "in": "path", "required": true, "type": "string" }
+        ],
+        "responses": {
+          "204": { "description": "No Content" },
+          "400": { "description": "Bad Request" },
+          "404": { "description": "Not Found" },
+          "500": { "description": "Internal Server Error" }
+        }
+      }
+    },
+    "/login": {
+      "get": {
+        "tags": ["Auth"],
+        "description": "User login",
+        "responses": {
+          "200": { "description": "Logged in successfully" },
+          "401": { "description": "Unauthorized" }
+        }
+      }
+    },
+    "/logout": {
+      "get": {
+        "tags": ["Auth"],
+        "description": "User logout",
+        "responses": {
+          "200": { "description": "Logged out successfully" }
         }
       }
     }
   },
   "tags": [
-    {
-      "name": "Movies",
-      "description": "Endpoints related to movie actions"
-    },
-    {
-      "name": "Users",
-      "description": "Endpoints related to user actions"
-    }
+    { "name": "Movies", "description": "Endpoints related to movie actions" },
+    { "name": "Users", "description": "Endpoints related to user actions" },
+    { "name": "Reviews", "description": "Endpoints for reviews" },
+    { "name": "Auth", "description": "Authentication endpoints" }
   ]
 }
