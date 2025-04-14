@@ -110,13 +110,18 @@ validate.reviewRules = () => {
       .isMongoId()
       .withMessage('Invalid User ID format'),
 
-    body('reviewText')
+    body('title')
       .exists({ checkFalsy: true })
       .withMessage('Review text is required')
       .isString()
       .withMessage('Review text must be a string')
       .isLength({ min: 1 })
       .withMessage('Review text cannot be empty'),
+
+    body('comment')
+    .exists()
+    .withMessage('comment is required')
+    .isString(),
 
     body('rating')
       .exists()
@@ -125,6 +130,7 @@ validate.reviewRules = () => {
       .withMessage('Rating must be a number between 1 and 10'),
   ];
 };
+
 
 // Shared Validation Result Checker
 validate.checkData = (req, res, next) => {

@@ -1,5 +1,6 @@
 const mongodb = require('../data/database');
 const ObjectId = require('mongodb').ObjectId;
+const { reviewRules } = require('../validator/reviewValidator');
 
 const getAll = async (req, res) => {
     try {
@@ -35,6 +36,9 @@ const getSingle = async (req, res) => {
 
 const createReview = async (req, res) => {
     try {
+        // Validate the review
+        await reviewRules.validateAsync(req.body);
+
         const review = {
             user_id: new ObjectId(req.body.user_id),
             movie_id: new ObjectId(req.body.movie_id),
@@ -52,12 +56,15 @@ const createReview = async (req, res) => {
             throw new Error('Review creation failed');
         }
     } catch (error) {
-        res.status(500).json({ error: 'An error occurred while creating the user', details: error.message });
+        res.status(500).json({ error: 'An error occurred while creating the Review', details: error.message });
     }
 };
 
 const updateReview = async (req, res) => {
     try {
+        // Validate the review
+        await reviewRules.validateAsync(req.body);
+
         const reviewId = req.params.id;
 
         if (!ObjectId.isValid(reviewId)) {
