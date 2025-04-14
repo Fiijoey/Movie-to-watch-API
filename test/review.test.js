@@ -81,4 +81,27 @@ describe("Get all Reviews", () => {
         expect(response.body.error).toBe("Invalid Review ID format");
         expect(response.statusCode).toBe(400);
     });
+
+    it("should return message validation required when try create review", async () => {
+        const invalid_review = {
+            title: "",
+            reting: "",
+        };
+        const response = await request(app).post("/reviews").send(invalid_review);
+        expect(response.body).toBeInstanceOf(Object);
+        expect(response.body.error).toBe("An error occurred while creating the Review");
+        expect(response.statusCode).toBe(500);
+    });
+
+    it("should return message validation required when try updated review", async () => {
+        const invalid_review = {
+            title: "",
+            reting: "",
+        };
+        const invalid_id = "invalid_id";
+        const response = await request(app).put("/reviews/" + invalid_id).send(invalid_review);
+        expect(response.body).toBeInstanceOf(Object);
+        expect(response.body.error).toBe("An error occurred while updating the Review");
+        expect(response.statusCode).toBe(500);
+    });
 });
