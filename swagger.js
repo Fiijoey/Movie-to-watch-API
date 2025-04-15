@@ -5,7 +5,8 @@ const doc = {
     title: "Movies to Watch Api",
     description: "Movies to Watch Api",
   },
-  host: "movie-to-watch-api-k551.onrender.com",
+  // host: "movie-to-watch-api-k551.onrender.com",
+  host: "localhost:3000",
   schemes: ["http"],
 };
 
