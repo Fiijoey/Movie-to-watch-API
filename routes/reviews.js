@@ -4,6 +4,8 @@ const router = express.Router();
 const reviewController = require('../controllers/reviews');
 const validate = require('../middleware/validator');
 
+const { isAuthenticated } = require("../middleware/authenticate");
+
 // Removed isAuthenticated to allow unauthenticated access
 
 // GET all reviews
@@ -15,6 +17,7 @@ router.get('/:id', reviewController.getSingle);
 // POST - Create a review with validation (no auth)
 router.post(
   '/',
+  isAuthenticated,
   reviewController.createReview,
   validate.reviewRules(),
   validate.checkData,
@@ -22,11 +25,11 @@ router.post(
 
 // PUT - Update a review by ID with validation (no auth)
 router.put(
-  '/:id',
+  '/:id', isAuthenticated,
   reviewController.updateReview
 );
 
 // DELETE - Remove a review by ID (no auth)
-router.delete('/:id', reviewController.deleteReview);
+router.delete('/:id', isAuthenticated,reviewController.deleteReview);
 
 module.exports = router;
