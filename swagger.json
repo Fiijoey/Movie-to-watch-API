@@ -9,8 +9,8 @@
   
   "basePath": "/",
   "schemes": [
-    "https",
-    "http"
+    "https"
+    
   ],
   "paths": {
     "/movies/": {

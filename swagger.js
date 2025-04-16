@@ -6,8 +6,8 @@ const doc = {
     description: "Movies to Watch Api",
   },
   // host: "movie-to-watch-api-k551.onrender.com",
-  host: "localhost:3000",
-  schemes: ["http"],
+  host: "movie-to-watch-api-k551.onrender.com/",
+  schemes: ["https"],
 };
 
 const outputFile = "./swagger.json";
