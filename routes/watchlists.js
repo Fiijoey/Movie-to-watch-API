@@ -1,10 +1,9 @@
 const express = require('express');
 const router = express.Router();
-
 const watchlistController = require('../controllers/watchlists');
 const validate = require('../middleware/validator');
-const { isAuthenticated } = require("../middleware/authenticate");
 
+const { isAuthenticated } = require("../middleware/authenticate");
 // GET all watchlists
 router.get('/', watchlistController.getAll);
 

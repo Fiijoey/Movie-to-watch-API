@@ -15,36 +15,53 @@ const getAll = async (req, res) => {
 
 // Get single watchlist by ID
 const getSingle = async (req, res) => {
+  const watchlistId = req.params.id;
+
+  if (!ObjectId.isValid(watchlistId)) {
+    return res.status(400).json({ error: 'Invalid Watchlist ID format' });
+  }
+
   try {
-    const watchlistId = req.params.id;
+    const result = await mongodb.getDatabase().db().collection('watchlists').findOne({ _id: new ObjectId(watchlistId) });
 
-    if (!ObjectId.isValid(watchlistId)) {
-      return res.status(400).json({ error: 'Invalid Watchlist ID format' });
-    }
-
-    const result = await mongodb.getDatabase().db().collection('watchlists').find({ _id: new ObjectId(watchlistId) }).toArray();
-
-    if (result.length === 0) {
+    if (!result) {
       return res.status(404).json({ error: 'Watchlist not found' });
     }
 
     res.setHeader('Content-Type', 'application/json');
-    res.status(200).json(result[0]);
+    res.status(200).json(result);
   } catch (error) {
     res.status(500).json({ error: 'An error occurred while retrieving the watchlist', details: error.message });
   }
 };
 
-// Create a new watchlist
+
 const createWatchlist = async (req, res) => {
+  const { name, movies } = req.body;
+  const userId = req.session.user_id;
+
+  if (!Array.isArray(movies) || movies.length === 0) {
+    return res.status(400).json({ error: 'Movies array is required and cannot be empty' });
+  }
+
   try {
-    const watchlist = {
-      user_id: new ObjectId(req.body.user_id),
-      name: req.body.name,
-      movies: req.body.movies.map((movie) => ({
-        movie_id: new ObjectId(movie.movie_id),
+    // Convert each movie object to expected structure and validate
+    const formattedMovies = movies.map(movie => {
+      if (!ObjectId.isValid(movie.movieId)) {
+        throw new Error(`Invalid movieId format: ${movie.movieId}`);
+      }
+
+      return {
+        movieId: new ObjectId(movie.movieId),
         status: movie.status
-      }))
+      };
+    });
+
+    const watchlist = {
+      name,
+      user_id: new ObjectId(userId),
+      movies: formattedMovies,
+      // createdAt: new Date()
     };
 
     const response = await mongodb.getDatabase().db().collection('watchlists').insertOne(watchlist);
@@ -55,52 +72,62 @@ const createWatchlist = async (req, res) => {
       throw new Error('Watchlist creation failed');
     }
   } catch (error) {
-    res.status(500).json({ error: 'An error occurred while creating the Watchlist', details: error.message });
+    res.status(500).json({ error: 'An error occurred while creating the watchlist', details: error.message });
   }
 };
 
+
 // Update an existing watchlist
 const updateWatchlist = async (req, res) => {
+  const { name, movies } = req.body;
+
+  if (!Array.isArray(movies) || movies.length === 0) {
+    return res.status(400).json({ error: 'Movies array is required and cannot be empty' });
+  }
+
   try {
-    const watchlistId = req.params.id;
-
-    if (!ObjectId.isValid(watchlistId)) {
-      return res.status(400).json({ error: 'Invalid Watchlist ID format' });
-    }
-
-    const watchlist = {
-      user_id: new ObjectId(req.body.user_id),
-      name: req.body.name,
-      movies: req.body.movies.map((movie) => ({
-        movie_id: new ObjectId(movie.movie_id),
+    const formattedMovies = movies.map(movie => {
+      if (!ObjectId.isValid(movie.movieId)) {
+        throw new Error(`Invalid movieId format: ${movie.movieId}`);
+      }
+      return {
+        movieId: new ObjectId(movie.movieId),
         status: movie.status
-      }))
+      };
+    });
+
+    const watchlistId = new ObjectId(req.params.id);
+
+    const updateDoc = {
+      $set: {
+        name,
+        movies: formattedMovies
+      }
     };
 
-    const response = await mongodb.getDatabase().db().collection('watchlists').replaceOne(
-      { _id: new ObjectId(watchlistId) },
-      watchlist
-    );
+    const response = await mongodb.getDatabase().db().collection('watchlists').updateOne({ _id: watchlistId }, updateDoc);
 
     if (response.modifiedCount > 0) {
       res.status(200).json({ message: 'Watchlist updated successfully' });
     } else {
-      res.status(404).json({ error: 'Watchlist not found or no changes made' });
+      res.status(404).json({ message: 'Watchlist not found or no changes made' });
     }
   } catch (error) {
-    res.status(500).json({ error: 'An error occurred while updating the Watchlist', details: error.message });
+    res.status(500).json({ error: 'An error occurred while updating the watchlist', details: error.message });
   }
 };
 
+
+
 // Delete a watchlist
 const deleteWatchlist = async (req, res) => {
+  const watchlistId = req.params.id;
+
+  if (!ObjectId.isValid(watchlistId)) {
+    return res.status(400).json({ error: 'Invalid Watchlist ID format' });
+  }
+
   try {
-    const watchlistId = req.params.id;
-
-    if (!ObjectId.isValid(watchlistId)) {
-      return res.status(400).json({ error: 'Invalid Watchlist ID format' });
-    }
-
     const response = await mongodb.getDatabase().db().collection('watchlists').deleteOne({ _id: new ObjectId(watchlistId) });
 
     if (response.deletedCount > 0) {
