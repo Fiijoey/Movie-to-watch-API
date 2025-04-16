@@ -10,6 +10,8 @@ router.use('/users', require('./users'));
 
 router.use('/reviews', require('./reviews'));
 
+router.use('/watchlists', require('./watchlists'));
+
 router.get('/login', passport.authenticate('github'), (req,res)=>{});
 
 router.get('/logout', function(req, res, next) {

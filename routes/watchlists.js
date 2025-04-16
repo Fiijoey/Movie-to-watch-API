@@ -14,8 +14,6 @@ router.get('/:id', watchlistController.getSingle);
 router.post(
   '/',
   isAuthenticated,
-  validate.watchlistRules(),
-  validate.checkData,
   watchlistController.createWatchlist
 );
 
@@ -23,8 +21,6 @@ router.post(
 router.put(
   '/:id',
   isAuthenticated,
-  validate.watchlistRules(),
-  validate.checkData,
   watchlistController.updateWatchlist
 );
 

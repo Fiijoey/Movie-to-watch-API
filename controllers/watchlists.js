@@ -1,6 +1,6 @@
 const mongodb = require('../data/database');
 const ObjectId = require('mongodb').ObjectId;
-
+const { watchlistRules } = require('../validator/watchlistsValidator');
 // Get all watchlists
 const getAll = async (req, res) => {
   try {
@@ -39,6 +39,8 @@ const getSingle = async (req, res) => {
 const createWatchlist = async (req, res) => {
   const { name, movies } = req.body;
   const userId = req.session.user_id;
+
+  await watchlistRules.validateAsync(req.body);
 
   if (!Array.isArray(movies) || movies.length === 0) {
     return res.status(400).json({ error: 'Movies array is required and cannot be empty' });
@@ -80,6 +82,8 @@ const createWatchlist = async (req, res) => {
 // Update an existing watchlist
 const updateWatchlist = async (req, res) => {
   const { name, movies } = req.body;
+
+  await watchlistRules.validateAsync(req.body);
 
   if (!Array.isArray(movies) || movies.length === 0) {
     return res.status(400).json({ error: 'Movies array is required and cannot be empty' });
