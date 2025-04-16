@@ -2,12 +2,8 @@ const joi = require('@hapi/joi');
 
 const watchlistRules = joi.object({
     name: joi.string().required(),
-    movies: joi.array().items(
-        joi.object({
-            movieId: joi.string().required(),
-            status: joi.string().required()
-        })
-    ).required()
+    user_id: joi.string().required(),
+    movies: joi.required()
 });
 
 module.exports = { watchlistRules };
